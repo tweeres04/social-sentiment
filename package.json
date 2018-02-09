@@ -1,0 +1,17 @@
+{
+	"name": "social-sentiment",
+	"version": "1.0.0",
+	"description": "Colours social media comments based on their sentiment",
+	"repository": "https://github.com/tweeres04/social-sentiment",
+	"author": "Tyler Weeres",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"chroma-js": "^1.3.6",
+		"sentiment": "^4.2.0"
+	},
+	"scripts": {
+		"build":
+			"browserify node_modules/sentiment/lib/index.js -o node_modules/sentiment/sentiment.bundle.js --standalone sentiment"
+	}
+}
