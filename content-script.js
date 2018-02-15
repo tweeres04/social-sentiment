@@ -1,5 +1,3 @@
-const sentimentApiUrl = 'http://text-processing.com/api/sentiment/';
-
 const colourScale = chroma
 	.scale(['lightcoral', 'white', 'lightblue'])
 	.domain([-1, 1]);
@@ -19,18 +17,36 @@ observer.observe(document, {
 
 function processNode(node) {
 	const comments = node.querySelectorAll
-		? node.querySelectorAll('.userContent, .UFICommentActorAndBody')
+		? node.querySelectorAll('.UFICommentActorAndBody')
 		: [];
 	comments.forEach(element => {
-		const text = element.innerText;
-		const sentimentResults = sentiment(text);
-		const { comparative } = sentimentResults;
-		const backgroundColor = colourScale(comparative);
+		const commentText = element.innerText;
+		const { comparative } = sentiment(commentText);
 
 		element.style.backgroundColor = colourScale(comparative).hex();
 	});
+
+	const posts = node.querySelectorAll
+		? node.querySelectorAll('.userContentWrapper')
+		: [];
+	posts.forEach(element => {
+		const postElement = element.querySelector('.userContent');
+		if (postElement) {
+			const postText = postElement.textContent;
+			const { comparative } = sentiment(postText);
+			const labels = element.querySelectorAll('._4arz, ._ipo');
+			const backgroundColour = colourScale(comparative).hex();
+
+			element.style.backgroundColor = backgroundColour;
+			labels.forEach(label => {
+				label.style.backgroundColor = 'inherit';
+			});
+		}
+	});
 }
 
+// This function is for testing
+// eslint-disable-next-line no-unused-vars
 function appendComparativeScore({ element, comparativeScore }) {
 	const pre = document.createElement('pre');
 	const textNode = document.createTextNode(
