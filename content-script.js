@@ -39,7 +39,7 @@ function processNode(node) {
 
 			element.style.backgroundColor = backgroundColour;
 			labels.forEach(label => {
-				label.style.backgroundColor = 'inherit';
+				label.style.backgroundColor = backgroundColour;
 			});
 		}
 	});
