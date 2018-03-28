@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Facebook Comment Sentiment",
-	"version": "1.0",
+	"version": "1.0.1",
 	"description":
 		"Changes the background colour of a Facebook comment based on its sentiment. Icon by http://freepik.com.",
 	"permissions": ["https://*.facebook.com/"],
